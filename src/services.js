@@ -2,8 +2,7 @@ import axios from 'axios'
 
 // ✅ Never hardcode a URL. Read from the environment variable first,
 //    fall back to localhost only for local development.
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api'
-
+const API = import.meta.env.VITE_API_URL;
 const api = axios.create({
   baseURL: API_URL,
   withCredentials: true,          // send cookies / auth headers cross-origin
