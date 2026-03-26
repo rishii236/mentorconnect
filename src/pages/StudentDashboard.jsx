@@ -42,8 +42,13 @@ function StudentDashboard() {
   const fetchMentors = async () => {
     try {
       setLoading(true)
-      const response = await axios.get(`${API_URL}/api/mentors`)
+const token = localStorage.getItem('token')
 
+const response = await axios.get(`${API_URL}/api/mentors`, {
+  headers: {
+    Authorization: `Bearer ${token}`
+  }
+})
       setMentors(response.data.data)
       setError('')
     } catch (err) {
@@ -57,7 +62,13 @@ function StudentDashboard() {
   const fetchMyDoubts = async () => {
     try {
       setLoading(true)
-      const response = await axios.get(`${API_URL}/api/doubts/my-doubts`)
+const token = localStorage.getItem('token')
+
+const response = await axios.get(`${API_URL}/api/doubts/my-doubts`, {
+  headers: {
+    Authorization: `Bearer ${token}`
+  }
+})
       setMyDoubts(response.data.data)
       setError('')
     } catch (err) {

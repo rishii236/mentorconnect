@@ -61,12 +61,14 @@ function DoubtModal({ mentor, onClose, onSuccess }) {
         data.append('doubtImage', doubtImage)
       }
 
-      await axios.post(`${API_URL}/api/doubts`, data, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      })
+    const token = localStorage.getItem('token')
 
+await axios.post(`${API_URL}/api/doubts`, data, {
+  headers: {
+    'Content-Type': 'multipart/form-data',
+    Authorization: `Bearer ${token}`
+  }
+})
       // Success
       onSuccess()
     } catch (err) {
