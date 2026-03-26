@@ -24,7 +24,7 @@ function AppointmentBooking({ mentor, doubt, onClose, onSuccess }) {
     try {
       setLoading(true)
       const token = localStorage.getItem('token')
-      const response = await axios.get(`${API_URL}/availability/mentor/${mentor._id}`, {
+      const response = await axios.get(`${API_URL}/api/availability/mentor/${mentor._id}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       setAvailability(response.data.data)
@@ -80,7 +80,7 @@ function AppointmentBooking({ mentor, doubt, onClose, onSuccess }) {
       const startHour = parseInt(selectedTime.split(':')[0])
       const endHour = startHour + 1
 
-      await axios.post(`${API_URL}/availability/book`, {
+      await axios.post(`${API_URL}/api/availability/book`, {
         mentorId: mentor._id,
         doubtId: doubt?._id,
         subject: doubt?.subject || mentor.subject,

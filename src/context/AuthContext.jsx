@@ -1,6 +1,9 @@
 import { createContext, useContext, useState, useEffect } from 'react'
 import axios from 'axios'
 
+  // API base URL
+const API_URL = import.meta.env.VITE_API_URL;
+
 const AuthContext = createContext()
 
 export const useAuth = () => {
@@ -16,9 +19,6 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem('token'))
   const [loading, setLoading] = useState(true)
 
-  // API base URL
-  const API_URL = 'http://localhost:5000/api'
-
   // Set axios default header
   useEffect(() => {
     if (token) {
@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }) => {
 
   const fetchUserInfo = async () => {
     try {
-      const response = await axios.get(`${API_URL}/auth/me`)
+      const response = await axios.get(`${API_URL}/api/auth/me`)
       setUser(response.data)
     } catch (error) {
       console.error('Failed to fetch user info:', error)
@@ -44,11 +44,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const response = await axios.post(`${API_URL}/auth/login`, {
-        email,
-        password
-      })
-
+      const response = await axios.post(`${API_URL}/api/auth/login`, { email, password })
       const { token: newToken, ...userData } = response.data
       
       setToken(newToken)
@@ -64,7 +60,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (userData) => {
     try {
-      const response = await axios.post(`${API_URL}/auth/register`, userData)
+      const response = await axios.post(`${API_URL}/api/auth/register`, userData)  // ✅ FIXED
       
       const { token: newToken, ...user } = response.data
       

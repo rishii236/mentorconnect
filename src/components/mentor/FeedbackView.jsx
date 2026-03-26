@@ -18,7 +18,7 @@ function FeedbackView() {
       setLoading(true)
       const token = localStorage.getItem('token')
       
-      const response = await axios.get(`${API_URL}/feedback/received`, {
+      const response = await axios.get(`${API_URL}/api/feedback/received`, {
         headers: { Authorization: `Bearer ${token}` }
       })
 

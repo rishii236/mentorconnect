@@ -10,6 +10,7 @@ import AdvancedSearch from '../components/search/AdvancedSearch'
 import ChatWindow from '../components/common/ChatWindow'
 import NotificationBell from '../components/common/NotificationBell'
 import Chatbot from '../components/common/Chatbot'
+import SettingsModal from '../components/common/SettingsModal'
 import { Vortex } from '../components/ui/Vortex'
 
 function StudentDashboard() {
@@ -28,6 +29,7 @@ function StudentDashboard() {
   const [selectedMentorForAppointment, setSelectedMentorForAppointment] = useState(null)
   const [showRating, setShowRating] = useState(false)
   const [ratingDoubt, setRatingDoubt] = useState(null)
+  const [showSettings, setShowSettings] = useState(false)
 
   useEffect(() => {
     if (activeTab === 'mentors') {
@@ -40,7 +42,8 @@ function StudentDashboard() {
   const fetchMentors = async () => {
     try {
       setLoading(true)
-      const response = await axios.get(`${API_URL}/mentors`)
+      const response = await axios.get(`${API_URL}/api/mentors`)
+
       setMentors(response.data.data)
       setError('')
     } catch (err) {
@@ -54,7 +57,7 @@ function StudentDashboard() {
   const fetchMyDoubts = async () => {
     try {
       setLoading(true)
-      const response = await axios.get(`${API_URL}/doubts/my-doubts`)
+      const response = await axios.get(`${API_URL}/api/doubts/my-doubts`)
       setMyDoubts(response.data.data)
       setError('')
     } catch (err) {
@@ -128,7 +131,7 @@ function StudentDashboard() {
                   Sign Out
                 </button>
                 <button
-                  onClick={() => navigate('/settings')}
+                  onClick={() => setShowSettings(true)}
                   className="p-2 rounded-lg glass text-gray-400 hover:text-white transition-colors"
                   title="Settings"
                 >
@@ -469,7 +472,7 @@ function StudentDashboard() {
         {showRating && ratingDoubt && (
           <RatingModal
             doubt={ratingDoubt}
-            mentor={ratingDoubt.mentor}
+            mentor={ratingDoubt.mentor || ratingDoubt.mentorId}
             onClose={() => {
               setShowRating(false)
               setRatingDoubt(null)
@@ -483,6 +486,11 @@ function StudentDashboard() {
         )}
 
         <Chatbot />
+
+        {/* Settings Modal */}
+        {showSettings && (
+          <SettingsModal onClose={() => setShowSettings(false)} />
+        )}
 
         {/* Footer */}
         <footer className="mt-16 py-8 border-t border-gray-800">

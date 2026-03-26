@@ -58,7 +58,7 @@ function ChatWindow({ doubt, onClose }) {
   const fetchMessages = async () => {
     try {
       setLoading(true)
-      const response = await axios.get(`${API_URL}/chat/${doubt._id}`)
+      const response = await axios.get(`${API_URL}/api/chat/${doubt._id}`)
       setMessages(response.data.data)
       markMessagesAsRead()
     } catch (error) {
@@ -70,7 +70,7 @@ function ChatWindow({ doubt, onClose }) {
 
   const markMessagesAsRead = async () => {
     try {
-      await axios.put(`${API_URL}/chat/${doubt._id}/read`)
+      await axios.put(`${API_URL}/api/chat/${doubt._id}/read`)
     } catch (error) {
       console.error('Failed to mark messages as read:', error)
     }
@@ -105,7 +105,7 @@ function ChatWindow({ doubt, onClose }) {
       setSending(true)
       
       // Send via API (saves to database)
-      const response = await axios.post(`${API_URL}/chat/${doubt._id}`, {
+      const response = await axios.post(`${API_URL}/api/chat/${doubt._id}`, {
         message: newMessage
       })
 

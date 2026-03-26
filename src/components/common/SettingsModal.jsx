@@ -52,7 +52,7 @@ function SettingsModal({ isOpen, onClose }) {
 
     try {
       const token = localStorage.getItem('token')
-      const response = await axios.put(`${API_URL}/auth/update-profile`, profileData, {
+      const response = await axios.put(`${API_URL}/api/auth/update-profile`, profileData, {
         headers: { Authorization: `Bearer ${token}` }
       })
 
@@ -85,7 +85,7 @@ function SettingsModal({ isOpen, onClose }) {
 
     try {
       const token = localStorage.getItem('token')
-      await axios.put(`${API_URL}/auth/change-password`, {
+      await axios.put(`${API_URL}/api/auth/change-password`, {
         currentPassword: passwordData.currentPassword,
         newPassword: passwordData.newPassword
       }, {
@@ -126,7 +126,7 @@ function SettingsModal({ isOpen, onClose }) {
 
     try {
       const token = localStorage.getItem('token')
-      await axios.delete(`${API_URL}/auth/delete-account`, {
+      await axios.delete(`${API_URL}/api/auth/delete-account`, {
         headers: { Authorization: `Bearer ${token}` }
       })
 
@@ -144,7 +144,7 @@ function SettingsModal({ isOpen, onClose }) {
     }
   }
 
-  if (!isOpen) return null
+  if (isOpen === false) return null
 
   return (
     <div

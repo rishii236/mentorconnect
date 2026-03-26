@@ -25,7 +25,7 @@ function AdminAnalytics() {
       setError('')
       const token = localStorage.getItem('token')
       
-      const response = await axios.get(`${API_URL}/analytics/admin`, {
+      const response = await axios.get(`${API_URL}/api/analytics/admin`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       

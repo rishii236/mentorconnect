@@ -61,7 +61,7 @@ function DoubtModal({ mentor, onClose, onSuccess }) {
         data.append('doubtImage', doubtImage)
       }
 
-      await axios.post(`${API_URL}/doubts`, data, {
+      await axios.post(`${API_URL}/api/doubts`, data, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

@@ -22,7 +22,7 @@ function MentorCalendar() {
   const fetchAvailability = async () => {
     try {
       setLoading(true)
-      const response = await axios.get(`${API_URL}/availability/my-availability`)
+      const response = await axios.get(`${API_URL}/api/availability/my-availability`)
       
       // Convert array to object for easier access
       const availabilityMap = {}
@@ -66,7 +66,7 @@ function MentorCalendar() {
 
     try {
       setSaving(true)
-      await axios.post(`${API_URL}/availability`, {
+      await axios.post(`${API_URL}/api/availability`, {
         dayOfWeek: day,
         startTime: slot.startTime,
         endTime: slot.endTime
@@ -87,7 +87,7 @@ function MentorCalendar() {
 
     try {
       setSaving(true)
-      await axios.delete(`${API_URL}/availability/${slot._id}`)
+      await axios.delete(`${API_URL}/api/availability/${slot._id}`)
       toast.success(`${day} availability removed`)
       
       // Remove from local state

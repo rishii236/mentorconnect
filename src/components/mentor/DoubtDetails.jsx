@@ -126,7 +126,7 @@ function DoubtDetails({ doubt, onClose, onUpdate }) {
               <div>
                 <p className="text-sm text-gray-400 mb-2">Attached Image</p>
                 <img 
-                  src={`http://localhost:5000${doubt.doubtImage}`}
+                  src={`${process.env.REACT_APP_API_URL}${doubt.doubtImage}`}
                   alt="Doubt" 
                   className="max-w-full rounded-lg border border-gray-700"
                 />

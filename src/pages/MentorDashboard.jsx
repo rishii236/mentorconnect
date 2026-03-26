@@ -34,8 +34,8 @@ function MentorDashboard() {
     try {
       setLoading(true)
       const url = statusFilter === 'all' 
-        ? `${API_URL}/doubts/mentor-doubts`
-        : `${API_URL}/doubts/mentor-doubts?status=${statusFilter}`
+        ? `${API_URL}/api/doubts/mentor-doubts`
+        : `${API_URL}/api/doubts/mentor-doubts?status=${statusFilter}`
       
       const response = await axios.get(url)
       setDoubts(response.data.data)
@@ -51,7 +51,7 @@ function MentorDashboard() {
   const handleUpdateStatus = async (doubtId, newStatus) => {
     try {
       setUpdatingStatus(true)
-      await axios.put(`${API_URL}/doubts/${doubtId}/status`, {
+      await axios.put(`${API_URL}/api/doubts/${doubtId}/status`, {
         status: newStatus,
         mentorResponse: responseText || undefined
       })

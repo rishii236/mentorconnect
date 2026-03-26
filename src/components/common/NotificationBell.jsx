@@ -26,7 +26,7 @@ function NotificationBell() {
 
   const fetchNotifications = async () => {
     try {
-      const response = await axios.get(`${API_URL}/notifications`)
+      const response = await axios.get(`${API_URL}/api/notifications`)
       setNotifications(response.data.data)
       setUnreadCount(response.data.unreadCount)
     } catch (error) {
@@ -36,7 +36,7 @@ function NotificationBell() {
 
   const markAsRead = async (id) => {
     try {
-      await axios.put(`${API_URL}/notifications/${id}/read`)
+      await axios.put(`${API_URL}/api/notifications/${id}/read`)
       setNotifications(prev =>
         prev.map(n => n._id === id ? { ...n, read: true } : n)
       )
@@ -48,7 +48,7 @@ function NotificationBell() {
 
   const markAllAsRead = async () => {
     try {
-      await axios.put(`${API_URL}/notifications/read-all`)
+      await axios.put(`${API_URL}/api/notifications/read-all`)
       setNotifications(prev => prev.map(n => ({ ...n, read: true })))
       setUnreadCount(0)
     } catch (error) {
@@ -58,7 +58,7 @@ function NotificationBell() {
 
   const deleteNotification = async (id) => {
     try {
-      await axios.delete(`${API_URL}/notifications/${id}`)
+      await axios.delete(`${API_URL}/api/notifications/${id}`)
       setNotifications(prev => prev.filter(n => n._id !== id))
     } catch (error) {
       console.error('Failed to delete notification:', error)

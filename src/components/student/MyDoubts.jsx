@@ -1,6 +1,8 @@
 import { useState } from 'react'
+import { useAuth } from '../../context/AuthContext'
 
 function MyDoubts({ doubts, onFeedback }) {
+  const { API_URL } = useAuth()
   const [selectedDoubt, setSelectedDoubt] = useState(null)
   const [rating, setRating] = useState(0)
   const [feedback, setFeedback] = useState('')
@@ -88,7 +90,7 @@ function MyDoubts({ doubts, onFeedback }) {
               <div>
                 <p className="text-sm font-medium text-gray-300 mb-2">Attached Image:</p>
                 <img 
-                  src={`http://localhost:5000${doubt.doubtImage}`}
+                  src={`${API_URL}${doubt.doubtImage}`}
                   alt="Doubt" 
                   className="max-w-xs rounded-lg border border-gray-700"
                 />

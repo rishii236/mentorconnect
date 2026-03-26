@@ -36,7 +36,7 @@ function AdvancedSearch({ type = 'doubts', onResults, initialFilters = {} }) {
   const fetchFilterOptions = async () => {
     try {
       const token = localStorage.getItem('token')
-      const response = await axios.get(`${API_URL}/search/${type}`, {
+      const response = await axios.get(`${API_URL}/api/search/${type}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       if (response.data.filterOptions) {
@@ -58,7 +58,7 @@ function AdvancedSearch({ type = 'doubts', onResults, initialFilters = {} }) {
         if (value) params.append(key, value)
       })
 
-      const response = await axios.get(`${API_URL}/search/${type}?${params}`, {
+      const response = await axios.get(`${API_URL}/api/search/${type}?${params}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
 

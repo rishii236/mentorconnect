@@ -9,7 +9,7 @@ import Register from './pages/Register'
 import StudentDashboard from './pages/StudentDashboard'
 import MentorDashboard from './pages/MentorDashboard'
 import AdminDashboard from './pages/AdminDashboard'
-import ComingSoon from  './pages/Comingsoon'
+import ComingSoon from  './pages/ComingSoon.jsx'
 
 import PrivateRoute from './components/PrivateRoute'
 import './App.css'

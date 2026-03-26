@@ -32,8 +32,8 @@ function RatingModal({ doubt, mentor, appointment, onClose, onSuccess }) {
       setSubmitting(true)
       const token = localStorage.getItem('token')
 
-      await axios.post(`${API_URL}/feedback`, {
-        mentorId: mentor._id,
+      await axios.post(`${API_URL}/api/feedback`, {
+        mentorId: mentor?._id,
         doubtId: doubt?._id,
         appointmentId: appointment?._id,
         rating,
@@ -81,7 +81,7 @@ function RatingModal({ doubt, mentor, appointment, onClose, onSuccess }) {
               ⭐ Rate Your Experience
             </h2>
             <p className="text-gray-400 text-sm">
-              How was your session with {mentor.name}?
+              How was your session with {mentor?.name}?
             </p>
           </div>
           <button

@@ -22,7 +22,7 @@ export const SocketProvider = ({ children }) => {
   useEffect(() => {
     if (user && token) {
       // Connect to Socket.io server
-      const newSocket = io('http://localhost:5000', {
+      const newSocket = io(import.meta.env.VITE_API_URL, {  // ✅ FIXED
         transports: ['websocket'],
         reconnection: true,
         reconnectionAttempts: 5,
